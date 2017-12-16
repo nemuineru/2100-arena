@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 198507c3b602e3344b581cfc58253af7
+timeCreated: 1505549902
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 36
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Px437 ToshibaLCD 8x8
+  fontNames:
+  - Px437 ToshibaLCD 8x8
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 2
+  ascentCalculationMode: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
