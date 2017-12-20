@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2100-arena", "2100-arena.csproj", "{EA465560-4DE2-F354-956E-49670F3CE17F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2100-arena.Editor", "2100-arena.Editor.csproj", "{A4B72A05-9442-250D-8F0A-BAC5D3C79859}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA465560-4DE2-F354-956E-49670F3CE17F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA465560-4DE2-F354-956E-49670F3CE17F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA465560-4DE2-F354-956E-49670F3CE17F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA465560-4DE2-F354-956E-49670F3CE17F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B72A05-9442-250D-8F0A-BAC5D3C79859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B72A05-9442-250D-8F0A-BAC5D3C79859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B72A05-9442-250D-8F0A-BAC5D3C79859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B72A05-9442-250D-8F0A-BAC5D3C79859}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
