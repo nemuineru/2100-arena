@@ -76,6 +76,7 @@ public class ShooterBehavior : MonoBehaviour {
     {
         bool reloadSoundToggle = true;
 
+        if(GameObject.Find("WorldSetting"))
         Cursor.SetCursor(GameObject.Find("WorldSetting").GetComponent<Level>().Cursors,
         new Vector2(16f, 16f), cursorMode: 0);
 
@@ -114,10 +115,10 @@ public class ShooterBehavior : MonoBehaviour {
                     Audio.Play();
                 }
 
-                if (Actor.Energy < TotalMagcap * ammo.UseEnergyByAmmo
+                if (Actor.Energy < ammo.UseEnergyByAmmo
                     && ammo.UseEnergyByAmmo > 0)
                     // もしアクターのエネルギーが満タンに出来ない時
-                    ammo.RestBullet = Mathf.CeilToInt(Actor.Energy / ammo.UseEnergyByAmmo);
+                    ammo.RestBullet = Mathf.CeilToInt(TotalMagcap * (Actor.Energy / ammo.UseEnergyByAmmo));
                 else
                     ammo.RestBullet = TotalMagcap;
 
@@ -155,7 +156,6 @@ public class ShooterBehavior : MonoBehaviour {
                )
             {
                 NextShotReady = false;
-
                 if (isLaser && LazCaster == null)//レーザ用に発射口を出す
                 {
                     LazCaster = new GameObject("LazCaster");
@@ -164,6 +164,7 @@ public class ShooterBehavior : MonoBehaviour {
 
                 for (int j = 0; j < stat_Number.Repeat + 1; j++)//バースト射撃
                 {
+                    Actor.Energy -= ammo.UseEnergyByAmmo / stat_Number.Repeat;
                     for (int i = 0; i < stat_Number.Burst + statMul.AddBurst + 1; i++)//追加発射数
                     {
                         Debug.Log("Shot");
@@ -199,7 +200,6 @@ public class ShooterBehavior : MonoBehaviour {
                         Audio.clip = sound.Shot;
                         Audio.Play();//ショットサウンド…
                     }
-                    Actor.Energy -= ammo.UseEnergyByAmmo;
                     --ammo.RestBullet; if (ammo.RestBullet <= 0)
                         break;
                     yield return new WaitForSeconds(stat_Time.Cooling);

@@ -63,5 +63,6 @@ public class BulletBehavior : MonoBehaviour {
             Destroy(gameObject,status.lifeTime);
             StarttoNowDot = Vector2.Dot(vfacingstart, vfacingnow);
             rigidbody2d.AddForce(Quaternion.Euler(0, 0, randomAngle)  * - vfacingnow * status.Air_Drag);
+            rigidbody2d.AddForce(vfacingnow * status.accelation);
     }
 }
