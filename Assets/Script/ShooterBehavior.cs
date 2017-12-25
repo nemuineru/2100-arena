@@ -90,7 +90,7 @@ public class ShooterBehavior : MonoBehaviour {
         bool isLaser = ammo.Shot.GetComponent<BulletStatus>().Lazer;
 
 
-        if (Actor.Energy < TotalMagcap * ammo.UseEnergyByAmmo 
+        if (Actor.Energy < ammo.UseEnergyByAmmo 
             && ammo.UseEnergyByAmmo > 0)
             // もしアクターのエネルギーが満タンに出来ない時
             ammo.RestBullet = Mathf.CeilToInt(Actor.Energy / ammo.UseEnergyByAmmo);
@@ -115,10 +115,10 @@ public class ShooterBehavior : MonoBehaviour {
                     Audio.Play();
                 }
 
-                if (Actor.Energy < ammo.UseEnergyByAmmo
+                if (Actor.Energy < ammo.UseEnergyByAmmo / (1 + stat_Number.Repeat) * TotalMagcap
                     && ammo.UseEnergyByAmmo > 0)
                     // もしアクターのエネルギーが満タンに出来ない時
-                    ammo.RestBullet = Mathf.CeilToInt(TotalMagcap * (Actor.Energy / ammo.UseEnergyByAmmo));
+                    ammo.RestBullet = Mathf.CeilToInt(Actor.Energy / ammo.UseEnergyByAmmo / (1 + stat_Number.Repeat) * TotalMagcap);
                 else
                     ammo.RestBullet = TotalMagcap;
 
