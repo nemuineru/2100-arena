@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GamepadInput;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -47,8 +46,7 @@ public class PlayerStatus : MonoBehaviour
     bool SwitchWeapon()
     {
         var Joystic = Input.GetJoystickNames();
-        if ((GamePad.GetButtonDown(GamePad.Button.A, GamePad.Index.Any)
-            || GamePad.GetButtonDown(GamePad.Button.B, GamePad.Index.Any)) || (Joystic.Length == 0 && Input.GetKeyDown(KeyCode.F)))
+        if (Input.GetButtonDown("Switch"))
             return true;
         else
             return false;

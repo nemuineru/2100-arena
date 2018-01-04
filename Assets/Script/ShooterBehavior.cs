@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using GamepadInput;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator), typeof(AudioSource), typeof(S_Dir))]
@@ -88,16 +87,7 @@ public class ShooterBehavior : MonoBehaviour {
         Audio = GetComponent<AudioSource>();
         Actor = transform.root.GetComponent<ActorBehavior>();
         bool isLaser = ammo.Shot.GetComponent<BulletStatus>().Lazer;
-
-
-        if (Actor.Energy < ammo.UseEnergyByAmmo 
-            && ammo.UseEnergyByAmmo > 0)
-            // もしアクターのエネルギーが満タンに出来ない時
-            ammo.RestBullet = Mathf.CeilToInt(Actor.Energy / ammo.UseEnergyByAmmo);
-        else
-            ammo.RestBullet = TotalMagcap;
-
-
+        
         while (true)
         {
             if (Reloading)
@@ -115,10 +105,10 @@ public class ShooterBehavior : MonoBehaviour {
                     Audio.Play();
                 }
 
-                if (Actor.Energy < ammo.UseEnergyByAmmo / (1 + stat_Number.Repeat) * TotalMagcap
+                if (Actor.Energy < ammo.UseEnergyByAmmo * (TotalMagcap / (1 + stat_Number.Repeat)) 
                     && ammo.UseEnergyByAmmo > 0)
                     // もしアクターのエネルギーが満タンに出来ない時
-                    ammo.RestBullet = Mathf.CeilToInt(Actor.Energy / ammo.UseEnergyByAmmo / (1 + stat_Number.Repeat) * TotalMagcap);
+                    ammo.RestBullet = Mathf.CeilToInt(Actor.Energy / (ammo.UseEnergyByAmmo * (TotalMagcap / (1 + stat_Number.Repeat))) * TotalMagcap);
                 else
                     ammo.RestBullet = TotalMagcap;
 
@@ -268,12 +258,7 @@ public class ShooterBehavior : MonoBehaviour {
     float ShootReadyupTime(float i)
     {
         var Joystic = Input.GetJoystickNames();
-        if (((GamePad.GetButton(GamePad.Button.LeftShoulder1, GamePad.Index.Any)) ||
-            (GamePad.GetButton(GamePad.Button.LeftShoulder2, GamePad.Index.Any)) ||
-            (GamePad.GetButton(GamePad.Button.RightShoulder1, GamePad.Index.Any)) ||
-          ((GamePad.GetButton(GamePad.Button.RightShoulder2, GamePad.Index.Any)))) || (
-          Joystic.Length == 0 && Input.GetMouseButton(button: 0))
-          )
+        if (Input.GetAxis("FireTrigger") > 0.4 || Input.GetButton("Key_FireTrigger"))
         {
             if (i <= 0)
             {
@@ -297,10 +282,7 @@ public class ShooterBehavior : MonoBehaviour {
     bool Reload_Pressed()
     {
         var Joystic = Input.GetJoystickNames();
-        if ((
-        GamePad.GetButtonDown(GamePad.Button.X, GamePad.Index.Any) ||
-        GamePad.GetButtonDown(GamePad.Button.Y, GamePad.Index.Any)
-        ) || (Joystic.Length == 0 && Input.GetKeyDown(KeyCode.R)))
+        if ( Input.GetButtonDown("Reload") )
             return true;
         else
             return false;

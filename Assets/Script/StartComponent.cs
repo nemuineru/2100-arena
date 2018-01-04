@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GamepadInput;
 using UnityEngine.SceneManagement;
 
 public class StartComponent : MonoBehaviour
@@ -18,10 +17,10 @@ public class StartComponent : MonoBehaviour
 
     IEnumerator MenuControl()
     {
-        if ((GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.Any).y > 0.3)
+        if ((Input.GetAxis("LS_Vertical") > 0.3)
             ||(( Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) )))
             menuselect = 0;
-        else if ((GamePad.GetAxis(GamePad.Axis.LeftStick, GamePad.Index.Any).y < -0.3)||
+        else if ((Input.GetAxis("LS_Vertical") < -0.3)||
             (Input.GetKeyDown(KeyCode.W) || (Input.GetKeyDown(KeyCode.S))))
             menuselect = 1;
         yield return null;
@@ -35,9 +34,7 @@ public class StartComponent : MonoBehaviour
             Application.Quit();
         if (menuselect == 0)
         {
-            if ((InputAny(GamePad.Button.A) || InputAny(GamePad.Button.B) ||
-                InputAny(GamePad.Button.X) || InputAny(GamePad.Button.Y))
-                ||(Input.GetKey(KeyCode.Return)))
+            if (Input.GetButton("Accept"))
             {
                 sync = SceneManager.LoadSceneAsync("LoadScreen");
             }
@@ -45,19 +42,11 @@ public class StartComponent : MonoBehaviour
         }
         if (menuselect == 1)
         {
-            if ((InputAny(GamePad.Button.A) || InputAny(GamePad.Button.B) ||
-                InputAny(GamePad.Button.X) || InputAny(GamePad.Button.Y))
-                || (Input.GetKey(KeyCode.Return)))
+            if (Input.GetButton("Accept"))
             {
                 Application.Quit();
             }
             text.text = " Start \n - End -";
         }
-    }
-    bool InputAny(GamePad.Button button)
-    {
-        if (GamePad.GetButton(button, GamePad.Index.Any))
-            return true;
-        else return false;
     }
 }

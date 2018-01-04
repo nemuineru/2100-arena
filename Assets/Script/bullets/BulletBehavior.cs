@@ -46,6 +46,7 @@ public class BulletBehavior : MonoBehaviour {
         }
             if ((!status.Penetrative && contractedeach == true )|| (coll.gameObject.tag == "Terrain"))
         {
+            transform.DetachChildren();
             Destroy(this.gameObject);
         }
     }

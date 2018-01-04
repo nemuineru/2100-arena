@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using GamepadInput;
 using UnityEngine;
 
 public class CamScript : MonoBehaviour {
@@ -31,13 +30,13 @@ public class CamScript : MonoBehaviour {
             }
             else
             {
-                BtwPlayerandCusor = Vector3.Lerp(player.transform.position, Cursor.transform.position, 0.5f);
+                BtwPlayerandCusor = Vector3.Lerp(player.transform.position, Cursor.transform.position, 0.8f);
                 transform.position = new Vector3(BtwPlayerandCusor.x + movPD.x / 25, BtwPlayerandCusor.y + movPD.y / 25, -5);
             }
         }
     }
     Vector2 RightAxisInput()
     {
-        return GamePad.GetAxis(GamePad.Axis.RightStick, GamePad.Index.Any).normalized;
+        return new Vector2(Input.GetAxis("RS_Horizontal"), Input.GetAxis("RS_Vertical"));
     }
 }

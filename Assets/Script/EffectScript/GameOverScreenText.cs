@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GamepadInput;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
@@ -30,15 +29,8 @@ public class GameOverScreenText : MonoBehaviour {
                  + "You reached " + level.Floor + " level of Floor" +
                  "\n" + "Press Anything to Back to menu";
             ;
-            if (InputAny(GamePad.Button.A) || InputAny(GamePad.Button.B) ||
-                InputAny(GamePad.Button.X) || InputAny(GamePad.Button.Y))
+            if (Input.anyKey)
                 SceneManager.LoadScene("StartScene");
         }
-        
     }
-    bool InputAny(GamePad.Button button) {
-        if (GamePad.GetButton(button, GamePad.Index.Any))
-            return true;
-        else return false;
-        }
 }

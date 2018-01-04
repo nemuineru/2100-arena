@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using GamepadInput;
 using UnityEngine;
 
 public class MousePoint : MonoBehaviour
@@ -34,6 +33,6 @@ public class MousePoint : MonoBehaviour
     }
     Vector2 RightAxisInput()
     {
-            return GamePad.GetAxis(GamePad.Axis.RightStick, GamePad.Index.Any);
+            return new Vector2(Input.GetAxis("RS_Horizontal"), Input.GetAxis("RS_Vertical"));
     }
 }

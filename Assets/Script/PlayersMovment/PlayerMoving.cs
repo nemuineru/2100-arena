@@ -57,9 +57,19 @@ public class PlayerMoving : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {
-        float x = Input.GetAxisRaw("Horizontal") * Actorbehavior.movespeed* Multi.MulSpeed;
-        float y = Input.GetAxisRaw("Vertical") * Actorbehavior.movespeed * Multi.MulSpeed;
+    void Update ()
+    {
+        float x, y;
+        if (Input.GetJoystickNames().Length == 0)
+        {
+            x = Input.GetAxisRaw("Key_Horizontal") * Actorbehavior.movespeed * Multi.MulSpeed;
+            y = Input.GetAxisRaw("Key_Vertical") * Actorbehavior.movespeed * Multi.MulSpeed;
+        }
+        else
+        {
+            x = Input.GetAxisRaw("LS_Horizontal") * Actorbehavior.movespeed * Multi.MulSpeed;
+            y = Input.GetAxisRaw("LS_Vertical") * Actorbehavior.movespeed * Multi.MulSpeed;
+        }
 
         Vector2 movements = new Vector2(x, y);
 

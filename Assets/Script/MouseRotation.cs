@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using GamepadInput;
 using UnityEngine;
 
 public class MouseRotation: MonoBehaviour
@@ -21,6 +20,7 @@ public class MouseRotation: MonoBehaviour
         var Joystic = Input.GetJoystickNames();
         playerposition = GetComponentInParent<Transform>().transform.position;
         playerScreenPos = Camera.main.WorldToScreenPoint(playerposition);
+        Debug.Log("J : " + Joystic.Length);
         if (Joystic.Length == 0)
         {
             mouse = Input.mousePosition;
@@ -43,12 +43,6 @@ public class MouseRotation: MonoBehaviour
 
     Vector2 RightAxisInput()
     {
-        if (GamePad.GetAxis(GamePad.Axis.RightStick, GamePad.Index.Any).normalized.magnitude > 0.1)
-
-        {
-            return GamePad.GetAxis(GamePad.Axis.RightStick, GamePad.Index.Any);
-        }
-        else
-            return new Vector2(0, 0);
+        return new Vector2(Input.GetAxis("RS_Horizontal"), Input.GetAxis("RS_Vertical"));
     }
 }

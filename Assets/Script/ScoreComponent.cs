@@ -11,10 +11,12 @@ public class ScoreComponent : MonoBehaviour {
         text = GetComponent<UnityEngine.UI.Text>();
         level = GameObject.Find("WorldSetting").GetComponent<Level>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        text.text = "Score - " + level.Score + "\n" 
-            + "Level - " + level.Currentlevel;
-	}
+
+    // Update is called once per frame
+    void Update() {
+        if (level != null){
+            text.text = "Score - " + level.Score + "\n"
+                + "Level - " + level.Currentlevel;
+        }
+    }
 }
